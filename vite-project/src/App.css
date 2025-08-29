@@ -1,0 +1,118 @@
+body {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  font-family: "Poppins", sans-serif;
+}
+
+
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create_form input{
+  width: 300px;
+  padding: 10px;
+  border-bottom: 2px solid;
+  outline: none;
+}
+.create_form button{
+    padding:11px;
+   border-radius: 6px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.todo-item {
+   background: #333;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;  /* space between left and right */
+  align-items: center;             /* vertically center */
+  margin: 10px 0;
+  min-width: 300px;   
+  transition: all 0.3s ease-in-out; 
+}
+/* Circle-shaped checkbox */
+.circle-checkbox {
+  appearance: none;      /* remove default style */
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid white;  /* circle outline */
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  background: transparent;
+}
+
+.circle-checkbox:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -58%);
+}
+.todo-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;                 /* space between checkbox and text */
+}
+
+/* Task text */
+.task-text {
+  flex: 1;
+  text-align: left;
+  margin: 0 10px;
+}
+
+/* Bin icon */
+.delete-icon {
+  cursor: pointer;
+  margin-left: 15px;        /* add spacing away from text */
+  font-size: 18px;
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+
+.delete-icon:hover {
+  color: red; /* red on hover */
+}
+.task-text.completed {
+  text-decoration: line-through;
+  color: #888; /* make completed tasks grey */
+  transition: all 0.3s ease; /* smooth animation */
+   opacity: 0.6;
+   transform: scale(0.98);
+}
+.progress-container {
+  margin: 20px 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-top: 5px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #81c784);
+  transition: width 0.3s ease-in-out;
+}
+.due-date {
+  margin-left: 10px;
+  font-size: 12px;
+  color: #ff5555; /* red to highlight urgency */
+}
