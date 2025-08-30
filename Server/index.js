@@ -27,11 +27,11 @@ app.post('/add',(req,res) =>{
     const {task,dueDate}=req.body;
      TodoModel.create({ task ,dueDate ,done: false})
       .then(result => {
-          console.log("✅ Saved to DB:", result);  // log saved document
+          console.log(" Saved to DB:", result);  // log saved document
           res.json(result);
       })
       .catch(err => {
-          console.error("❌ Error saving:", err);
+          console.error(" Error saving:", err);
           res.status(500).json(err);
       });
 })
@@ -40,16 +40,16 @@ app.delete('/delete/:id', (req, res) => {
   console.log("🗑️ Delete request received for ID:", id);  // log
   TodoModel.findByIdAndDelete(id)
     .then(result => {
-      console.log("✅ Deleted:", result);
+      console.log(" Deleted:", result);
       res.json(result);
     })
     .catch(err => {
-      console.error("❌ Error deleting:", err);
+      console.error("Error deleting:", err);
       res.json(err);
     });
 });
 app.use((req, res, next) => {
-  console.log("➡️ Request received:", req.method, req.url);
+  console.log(" Request received:", req.method, req.url);
   next();
 });
 

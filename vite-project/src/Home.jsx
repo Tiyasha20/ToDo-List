@@ -29,7 +29,7 @@ function Home() {
         }
     }, [])
     
-    // 🆕 ADD: Dark mode toggle function with smooth transition
+    // ADD: Dark mode toggle function with smooth transition
     const toggleDarkMode = () => {
         // Add switching class for smooth transition
         document.body.classList.add('switching-theme')
@@ -55,7 +55,7 @@ function Home() {
     const handleDelete = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/delete/${id}`);
-      setTodos(todos.filter(todo => todo._id !== id)); // remove locally
+      setTodos(todos.filter(todo => todo._id !== id)); 
     } catch (err) {
       console.log(err);
     }
@@ -113,7 +113,7 @@ function Home() {
             <div className="todo-item">
                 <div className="todo-left">
                 {/* {todo.task} */}
-             <input type="checkbox" className="circle-checkbox"  checked={todo.done}   // ✅ reflect state from DB
+             <input type="checkbox" className="circle-checkbox"  checked={todo.done}   
               onChange={(e) =>
               axios.put(`http://localhost:3001/update/${todo._id}`, { done: e.target.checked })
               .then(() => fetchTodos())   // refresh list
