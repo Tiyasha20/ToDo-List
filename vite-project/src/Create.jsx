@@ -1,32 +1,51 @@
-import React,{useState} from 'react'
-import axios from 'axios'
+import React, { useState } from "react";
 
+function Create({ onAdd }) {
+  const [task, setTask] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
-function Create({onAdd}) {
-    const [task, setTask]=useState("")
-    const [dueDate, setDueDate] = useState("");
-    const handleAdd =() => {
-    axios.post('http://localhost:3001/add',{task, dueDate})
-    // .then(result =>console.log(result))
-    // .catch(err =>console.log(err))
-      .then(() => {
-        setTask("");
-        setDueDate("");      // clear input
-        onAdd();          // ✅ refresh todos in Home
+  const handleAdd = () => {
+    if (!task.trim()) return;
 
-      })
-      .catch(err => console.log(err))
-    }
-    return(
-        <div className="create_form">
-            <input type="text" placeholder="Enter text"  value={task} onChange={(e)=> setTask(e.target.value)} />
-            <input
-            type="date"
-             value={dueDate}
-             onChange={(e) => setDueDate(e.target.value)}   // 🔹 update date
-            />
-            <button type="button" onClick={handleAdd}>Add</button>
-        </div>
-    )
+    const newTask = {
+      task,
+      dueDate,
+      completed: false
+    };
+
+    const existingTasks =
+      JSON.parse(localStorage.getItem("todos")) || [];
+
+    localStorage.setItem(
+      "todos",
+      JSON.stringify([...existingTasks, newTask])
+    );
+
+    setTask("");
+    setDueDate("");
+    onAdd(); // 🔥 tells parent to reload
+  };
+
+  return (
+    <div className="create_form">
+      <input
+        type="text"
+        placeholder="Enter text"
+        value={task}
+        onChange={(e) => setTask(e.target.value)}
+      />
+
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+      />
+
+      <button type="button" onClick={handleAdd}>
+        Add
+      </button>
+    </div>
+  );
 }
-export default  Create
+
+export default Create;
